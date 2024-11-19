@@ -3,7 +3,7 @@ execute:
   eval: false
 ---
 
-# Python to R {.unnumbered}
+# Python to R
 
 ## 对象转换
 
@@ -22,19 +22,11 @@ execute:
 ## [`reticulate::`](https://rstudio.github.io/reticulate/index.html){.uri}
 
 ```{r}
-#| comment: "#>"
-library(reticulate)
-#devtools::install_version( "ggmap",  version = "3.5.2")
-
-"R code"
-
-
+#> "R code"
 ```
 
 ```{r}
-#| comment: "###>"
-
-"python code"
+###> "python code"
 ```
 
 ### **R 安装 python 模块**
