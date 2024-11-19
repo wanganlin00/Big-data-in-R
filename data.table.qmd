@@ -47,3 +47,34 @@ DT[i, j, by]
 ![](images/data.table_cheatsheet.jpg){fig-align="center" width="80%"}
 
 <https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html>
+
+```         
+setkey(dt,v1,v3)  #设置键
+setindex(dt,v1,v3)  #设置索引
+DT[
+  ...
+  ][
+    ...
+    ][
+      ...
+      ]         #链式操作 ， |> 
+```
+
+```{r include=FALSE}
+write.csv(iris,"data/data.table/iris_dt.csv")
+```
+
+```{r}
+#数据读写
+DT<-fread("data/data.table/iris_dt.csv")
+DT
+
+fwrite(DT,"data/data.table/DT.tsv",append = F,sep = "\t")
+
+#写出列表列
+fwrite(setDT(list(c(0),list(1:5))),"data/data.table/DT_list_col.csv") 
+
+#写出到压缩文件
+fwrite(DT,"data/data.table/DT.csv.gz",compress = "gzip")     
+
+```
