@@ -1,0 +1,15 @@
+{
+  "hash": "e4998b98c852190dc543be65ea33cc61",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\nexecute: \n  eval: false\n---\n\n\n\n\n# Spark\n\n<https://spark.posit.co/>\n\nApache Spark 是用于大规模数据处理的统一分析引擎。\n\nSpark 提供了一组超出 MapReduce 的更丰富的动词，以方便优化在多台计算机中运行的代码。Spark 还将数据加载到内存中，使操作速度比 Hadoop 的磁盘存储快得多。\n\n![](images/clipboard-2740544019.png){fig-align=\"center\" width=\"60%\"}\n\n## 安装\n\n### java 8\n\n<https://java.com/download>\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsystem(command = \"E:/java/bin/java.exe -version\",intern = T) %>% cat(.,sep = \"\\n\")\n\n\n# 在 R 中临时设置 JAVA_HOME 环境变量\n# Sys.setenv(JAVA_HOME = \"E:/java\")\n\n```\n:::\n\n\n\n\n### sparklyr\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#install.packages(\"sparklyr\")\npackageVersion(\"sparklyr\")\n```\n:::\n\n\n\n\n### spark\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sparklyr)\n# C:\\\\Users\\\\DELL\\\\AppData\\\\Local/spark\noptions(spark.install.dir = \"E:/spark/\")\nspark_install_dir()\n# spark_available_versions()\n\n#spark_install(version = \"3.3\")\nspark_installed_versions()\n\n\n# spark_uninstall(version = \"1.6.3\", hadoop = \"2.6\")\n```\n:::\n\n\n\n\n## 连接\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sparklyr)\nsc <- spark_connect(master = \"local\")\n```\n:::\n\n\n\n\n## 使用\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncars <- copy_to(sc, mtcars)\n\ncars\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\nselect(cars, hp, mpg) %>%\n  sample_n(100) %>%\n  collect() %>%\n  plot()\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nmodel <- ml_linear_regression(cars, mpg ~ hp)\nmodel\n\nmodel %>%\n  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %>%\n  transmute(hp = hp, mpg = prediction) %>%\n  full_join(select(cars, hp, mpg)) %>%\n  collect() %>%\n  plot()\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nspark_write_csv(cars, \"data/spark/cars.csv\")\n\ncars <- spark_read_csv(sc, \"data/spark/cars.csv\")\n```\n:::\n\n\n\n\n### 分布式\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncars %>% spark_apply(~round(.x))\n```\n:::\n\n\n\n\n### 流\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndir.create(\"data/spark/input\")\ndir.create(\"data/spark/output\")\nwrite.csv(mtcars, \"data/spark/input/cars_1.csv\", row.names = F)\n\n\nstream <-stream_read_csv(sc, \"data/spark/input/\") %>%\n    select(mpg, cyl, disp) %>% \n    stream_write_csv(\"data/spark/output/\")\n\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nwrite.csv(mtcars, \"data/spark/input/cars_2.csv\", row.names = F)\n\n# 几秒钟后\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nstream_stop(stream)\n\nfile.remove(\"data/spark/input\")\nfile.remove(\"data/spark/output\")\n```\n:::\n\n\n\n\n## Web 界面\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nspark_web(sc)\n```\n:::\n\n\n\n\n![](images/clipboard-2463586693.png)\n\n## 断开连接\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nspark_disconnect(sc)\nspark_disconnect_all()\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

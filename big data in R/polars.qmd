@@ -42,10 +42,6 @@ pl$DataFrame(iris)$
   head(6)
 ```
 
-```{r}
-pl$read_csv("data/Advertising.csv")
-```
-
 ## [tidypolars](https://tidypolars.etiennebacher.com/)
 
 ```{r}

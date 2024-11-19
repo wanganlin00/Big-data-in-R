@@ -1,3 +1,13 @@
 ---
 title: "big data in R"
 ---
+
+data.table, dtplyr,dbplyr
+
+rcpp
+
+arrow
+
+spark
+
+ploars

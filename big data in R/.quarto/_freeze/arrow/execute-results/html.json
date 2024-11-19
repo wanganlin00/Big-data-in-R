@@ -1,0 +1,15 @@
+{
+  "hash": "e398d970649789b1c00e53e5492756bd",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Arrow\n\n-   [arrow.apache.R](https://arrow.apache.org/docs/r/)\n\n## 安装\n\n[apache-arrow.tar.gz](https://github.com/apache/arrow/releases/)\n\n\n\n\n\n\n\n\n\nread_parquet()：读取 Parquet 格式的文件\n\nread_delim_arrow()：读取带分隔符的文本文件\n\nread_csv_arrow()：读取逗号分隔值 （CSV） 文件\n\nread_tsv_arrow()：读取制表符分隔值 （TSV） 文件\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

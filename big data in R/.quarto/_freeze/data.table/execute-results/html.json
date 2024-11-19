@@ -1,0 +1,15 @@
+{
+  "hash": "6b39ebd1fb4ce52b2ab8e833bf892f67",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# `data.table`\n\n-   [data.table](https://rdatatable.gitlab.io/data.table/)\n-   [dtplyr](https://dtplyr.tidyverse.org/) data.table back-end for 'dplyr'\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(data.table)\nlibrary(dtplyr)\nlibrary(dplyr, warn.conflicts = FALSE)\n```\n:::\n\n\n\n\n## dtplyr 语法\n\nDTPLYR 使用 DPLYR 的语法s实现 [data.table](http://r-datatable.com/) 的速度；编写 DPLYR（和 TidyR）代码，DTPLYR 将其转换为等效的 Data.Table。\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmtcars2 <- lazy_dt(mtcars)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndtplyr <- mtcars2 %>% \n  filter(wt < 5) %>% \n  mutate(l100k = 235.21 / mpg) %>% # liters / 100 km\n  group_by(cyl) %>% \n  summarise(l100k = mean(l100k))\ndtplyr\n#> Source: local data table [3 x 2]\n#> Call:   `_DT1`[wt < 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#>     keyby = .(cyl)]\n#> \n#>     cyl l100k\n#>   <dbl> <dbl>\n#> 1     4  9.05\n#> 2     6 12.0 \n#> 3     8 14.9 \n#> \n#> # Use as.data.table()/as.data.frame()/as_tibble() to access results\n\ndtplyr %>% show_query()\n#> `_DT1`[wt < 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#>     keyby = .(cyl)]\n\ndtplyr %>% as_tibble()\n#> # A tibble: 3 × 2\n#>     cyl l100k\n#>   <dbl> <dbl>\n#> 1     4  9.05\n#> 2     6 12.0 \n#> 3     8 14.9\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\ndt <- data.table::as.data.table(mtcars)\ndt[wt<5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), keyby = .(cyl)]\n#> Key: <cyl>\n#>      cyl     l100k\n#>    <num>     <num>\n#> 1:     4  9.048898\n#> 2:     6 11.970180\n#> 3:     8 14.871885\n```\n:::\n\n\n\n\n## data.table 语法\n\n```         \nDT[i, j, by]\n\n##   R:                 i                 j        by\n## SQL:  where | order by   select | update  group by\n```\n\n![](images/data.table_cheatsheet.jpg){fig-align=\"center\"}\n\n<https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html>\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

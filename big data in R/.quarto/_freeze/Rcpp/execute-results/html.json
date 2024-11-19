@@ -1,0 +1,15 @@
+{
+  "hash": "a0b8fcc01f5f705ee7dc398e4c090c9e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Rcpp\n\n[Rcpp](http://www.rcpp.org/)\n\n[Rcpp4everyone](https://teuder.github.io/rcpp4everyone_en/)\n\n<https://dirk.eddelbuettel.com/papers/useR2019_rcpp_tutorial.pdf>\n\n<https://www.runoob.com/cplusplus/cpp-tutorial.html>\n\n## 数据结构\n\n### 向量类\n\n`NumericVector` `IntegerVector` `CharacterVector` `LogicalVector`\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(Rcpp)\nsourceCpp(\"function/sum_cpp.cpp\")\n#> \n#> > sum_cpp(c(1, 2, 3))\n#> [1] 6\n\nsum_cpp(mpg$displ)\n#> [1] 812.4\nsum(mpg$displ)\n#> [1] 812.4\n\nsourceCpp(\"function/mean_cpp.cpp\")\n#> \n#> > x = c(1, 2, 3, 4, 5)\n#> \n#> > mean_cpp(x)\n#> [1] 3\nmean_cpp(mpg$displ)\n#> [1] 3.471795\n```\n:::\n\n\n\n\n`NumericMatrix` `IntegerMatrix` `CharacterMatrix` `LogicalMatrix`\n\n### 数据框类\n\nDataFrame\n\n### 列表类\n\nList\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# 平均百分比误差\nsourceCpp(\"function/mpe.cpp\")\n#> \n#> > model <- lm(mpg ~ wt, data = mtcars)\n#> \n#> > mpe(model)\n#> [1] -0.01541615\nmod <- lm(mpg ~ wt, data = mtcars)\nmpe(mod)\n#> [1] -0.01541615\n```\n:::\n\n\n\n\n### 函数类\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncppFunction(\"RObject callWithOne(Function f) {\n  return f(1);\n}\")\n\ncallWithOne(function(x) x + 1)\n#> [1] 2\ncallWithOne(paste)\n#> [1] \"1\"\n```\n:::\n\n\n\n\n### 属性\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncppFunction('NumericVector attribs() {\n  NumericVector out = NumericVector::create(1, 2, 3);\n\n  out.names() = CharacterVector::create(\"a\", \"b\", \"c\");\n  out.attr(\"my-attr\") = \"my-value\";\n  out.attr(\"class\") = \"my-class\";\n\n  return out;\n}')\n\n\nattribs()\n#> a b c \n#> 1 2 3 \n#> attr(,\"my-attr\")\n#> [1] \"my-value\"\n#> attr(,\"class\")\n#> [1] \"my-class\"\n```\n:::\n\n\n\n\n## Rcpp sugar\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

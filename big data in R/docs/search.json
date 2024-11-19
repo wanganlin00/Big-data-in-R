@@ -1,0 +1,132 @@
+[
+  {
+    "objectID": "polars.html",
+    "href": "polars.html",
+    "title": "\n4  Polars\n",
+    "section": "",
+    "text": "4.1 polars\nShow the codeif(!require(polars))\n    install.packages(\"polars\", repos = \"https://rpolars.r-universe.dev\")\n\npolars_info()\n#&gt; Polars R package version : 0.20.0\n#&gt; Rust Polars crate version: 0.43.1\n#&gt; \n#&gt; Thread pool size: 18 \n#&gt; \n#&gt; Features:                               \n#&gt; default                    TRUE\n#&gt; full_features              TRUE\n#&gt; disable_limit_max_threads  TRUE\n#&gt; nightly                    TRUE\n#&gt; sql                        TRUE\n#&gt; rpolars_debug_print       FALSE\n#&gt; \n#&gt; Code completion: deactivated\npolars_code_completion_activate()\nPolars 的主要函数存储在 “pl” 命名空间中，可以使用 “pl$” 前缀进行访问，以防止与其他组件和base R 函数名称冲突\nShow the codeiris_polars &lt;- pl$DataFrame(iris)\niris_polars\n#&gt; shape: (150, 5)\n#&gt; ┌──────────────┬─────────────┬──────────────┬─────────────┬───────────┐\n#&gt; │ Sepal.Length ┆ Sepal.Width ┆ Petal.Length ┆ Petal.Width ┆ Species   │\n#&gt; │ ---          ┆ ---         ┆ ---          ┆ ---         ┆ ---       │\n#&gt; │ f64          ┆ f64         ┆ f64          ┆ f64         ┆ cat       │\n#&gt; ╞══════════════╪═════════════╪══════════════╪═════════════╪═══════════╡\n#&gt; │ 5.1          ┆ 3.5         ┆ 1.4          ┆ 0.2         ┆ setosa    │\n#&gt; │ 4.9          ┆ 3.0         ┆ 1.4          ┆ 0.2         ┆ setosa    │\n#&gt; │ 4.7          ┆ 3.2         ┆ 1.3          ┆ 0.2         ┆ setosa    │\n#&gt; │ 4.6          ┆ 3.1         ┆ 1.5          ┆ 0.2         ┆ setosa    │\n#&gt; │ 5.0          ┆ 3.6         ┆ 1.4          ┆ 0.2         ┆ setosa    │\n#&gt; │ …            ┆ …           ┆ …            ┆ …           ┆ …         │\n#&gt; │ 6.7          ┆ 3.0         ┆ 5.2          ┆ 2.3         ┆ virginica │\n#&gt; │ 6.3          ┆ 2.5         ┆ 5.0          ┆ 1.9         ┆ virginica │\n#&gt; │ 6.5          ┆ 3.0         ┆ 5.2          ┆ 2.0         ┆ virginica │\n#&gt; │ 6.2          ┆ 3.4         ┆ 5.4          ┆ 2.3         ┆ virginica │\n#&gt; │ 5.9          ┆ 3.0         ┆ 5.1          ┆ 1.8         ┆ virginica │\n#&gt; └──────────────┴─────────────┴──────────────┴─────────────┴───────────┘\n访问属性\nShow the codeiris_polars$shape\n#&gt; [1] 150   5\niris_polars$height\n#&gt; [1] 150\niris_polars$width\n#&gt; [1] 5\n\n# polars syntax\npl$DataFrame(iris)$\n  select(c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\", \"Petal.Width\"))$\n  with_columns(\n    pl$when(\n      (pl$col(\"Petal.Length\") / pl$col(\"Petal.Width\") &gt; 3)\n    )$then(pl$lit(\"long\"))$\n      otherwise(pl$lit(\"large\"))$\n      alias(\"petal_type\")\n  )$\n  filter(pl$col(\"Sepal.Length\")$is_between(4.5, 5.5))$\n  head(6)\n#&gt; shape: (6, 5)\n#&gt; ┌──────────────┬─────────────┬──────────────┬─────────────┬────────────┐\n#&gt; │ Sepal.Length ┆ Sepal.Width ┆ Petal.Length ┆ Petal.Width ┆ petal_type │\n#&gt; │ ---          ┆ ---         ┆ ---          ┆ ---         ┆ ---        │\n#&gt; │ f64          ┆ f64         ┆ f64          ┆ f64         ┆ str        │\n#&gt; ╞══════════════╪═════════════╪══════════════╪═════════════╪════════════╡\n#&gt; │ 5.1          ┆ 3.5         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 4.9          ┆ 3.0         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 4.7          ┆ 3.2         ┆ 1.3          ┆ 0.2         ┆ long       │\n#&gt; │ 4.6          ┆ 3.1         ┆ 1.5          ┆ 0.2         ┆ long       │\n#&gt; │ 5.0          ┆ 3.6         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 5.4          ┆ 3.9         ┆ 1.7          ┆ 0.4         ┆ long       │\n#&gt; └──────────────┴─────────────┴──────────────┴─────────────┴────────────┘",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Polars</span>"
+    ]
+  },
+  {
+    "objectID": "polars.html#polars",
+    "href": "polars.html#polars",
+    "title": "\n4  Polars\n",
+    "section": "",
+    "text": "R polars\nCookbook Polars for R",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Polars</span>"
+    ]
+  },
+  {
+    "objectID": "polars.html#tidypolars",
+    "href": "polars.html#tidypolars",
+    "title": "\n4  Polars\n",
+    "section": "\n4.2 tidypolars\n",
+    "text": "4.2 tidypolars\n\n\nShow the codeif(!require(tidypolars))\n    install.packages('tidypolars',\n                     repos = c('https://etiennebacher.r-universe.dev', getOption(\"repos\"))\n    )\n\niris |&gt; \n  as_polars_df() |&gt; \n  select(starts_with(c(\"Sep\", \"Pet\"))) |&gt; \n  mutate(\n    petal_type = ifelse((Petal.Length / Petal.Width) &gt; 3, \"long\", \"large\")\n  ) |&gt; \n  filter(between(Sepal.Length, 4.5, 5.5)) |&gt; \n  head()\n#&gt; shape: (6, 5)\n#&gt; ┌──────────────┬─────────────┬──────────────┬─────────────┬────────────┐\n#&gt; │ Sepal.Length ┆ Sepal.Width ┆ Petal.Length ┆ Petal.Width ┆ petal_type │\n#&gt; │ ---          ┆ ---         ┆ ---          ┆ ---         ┆ ---        │\n#&gt; │ f64          ┆ f64         ┆ f64          ┆ f64         ┆ str        │\n#&gt; ╞══════════════╪═════════════╪══════════════╪═════════════╪════════════╡\n#&gt; │ 5.1          ┆ 3.5         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 4.9          ┆ 3.0         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 4.7          ┆ 3.2         ┆ 1.3          ┆ 0.2         ┆ long       │\n#&gt; │ 4.6          ┆ 3.1         ┆ 1.5          ┆ 0.2         ┆ long       │\n#&gt; │ 5.0          ┆ 3.6         ┆ 1.4          ┆ 0.2         ┆ long       │\n#&gt; │ 5.4          ┆ 3.9         ┆ 1.7          ┆ 0.4         ┆ long       │\n#&gt; └──────────────┴─────────────┴──────────────┴─────────────┴────────────┘",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Polars</span>"
+    ]
+  },
+  {
+    "objectID": "Rcpp.html",
+    "href": "Rcpp.html",
+    "title": "\n4  Rcpp\n",
+    "section": "",
+    "text": "4.1 数据结构\nRcpp\nRcpp4everyone\nhttps://dirk.eddelbuettel.com/papers/useR2019_rcpp_tutorial.pdf\nhttps://www.runoob.com/cplusplus/cpp-tutorial.html",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rcpp</span>"
+    ]
+  },
+  {
+    "objectID": "Rcpp.html#数据结构",
+    "href": "Rcpp.html#数据结构",
+    "title": "\n4  Rcpp\n",
+    "section": "",
+    "text": "4.1.1 向量类\nNumericVector IntegerVector CharacterVector LogicalVector\n\nShow the codelibrary(Rcpp)\nsourceCpp(\"function/sum_cpp.cpp\")\n#&gt; \n#&gt; &gt; sum_cpp(c(1, 2, 3))\n#&gt; [1] 6\n\nsum_cpp(mpg$displ)\n#&gt; [1] 812.4\nsum(mpg$displ)\n#&gt; [1] 812.4\n\nsourceCpp(\"function/mean_cpp.cpp\")\n#&gt; \n#&gt; &gt; x = c(1, 2, 3, 4, 5)\n#&gt; \n#&gt; &gt; mean_cpp(x)\n#&gt; [1] 3\nmean_cpp(mpg$displ)\n#&gt; [1] 3.471795\n\n\nNumericMatrix IntegerMatrix CharacterMatrix LogicalMatrix\n\n4.1.2 数据框类\nDataFrame\n\n4.1.3 列表类\nList\n\nShow the code# 平均百分比误差\nsourceCpp(\"function/mpe.cpp\")\n#&gt; \n#&gt; &gt; model &lt;- lm(mpg ~ wt, data = mtcars)\n#&gt; \n#&gt; &gt; mpe(model)\n#&gt; [1] -0.01541615\nmod &lt;- lm(mpg ~ wt, data = mtcars)\nmpe(mod)\n#&gt; [1] -0.01541615\n\n\n\n4.1.4 函数类\n\nShow the codecppFunction(\"RObject callWithOne(Function f) {\n  return f(1);\n}\")\n\ncallWithOne(function(x) x + 1)\n#&gt; [1] 2\ncallWithOne(paste)\n#&gt; [1] \"1\"\n\n\n\n4.1.5 属性\n\nShow the codecppFunction('NumericVector attribs() {\n  NumericVector out = NumericVector::create(1, 2, 3);\n\n  out.names() = CharacterVector::create(\"a\", \"b\", \"c\");\n  out.attr(\"my-attr\") = \"my-value\";\n  out.attr(\"class\") = \"my-class\";\n\n  return out;\n}')\n\n\nattribs()\n#&gt; a b c \n#&gt; 1 2 3 \n#&gt; attr(,\"my-attr\")\n#&gt; [1] \"my-value\"\n#&gt; attr(,\"class\")\n#&gt; [1] \"my-class\"",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rcpp</span>"
+    ]
+  },
+  {
+    "objectID": "Rcpp.html#rcpp-sugar",
+    "href": "Rcpp.html#rcpp-sugar",
+    "title": "\n4  Rcpp\n",
+    "section": "\n4.2 Rcpp sugar",
+    "text": "4.2 Rcpp sugar",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Rcpp</span>"
+    ]
+  },
+  {
+    "objectID": "Python_To_R.html",
+    "href": "Python_To_R.html",
+    "title": "R⬌Python",
+    "section": "",
+    "text": "对象转换",
+    "crumbs": [
+      "R⬌Python"
+    ]
+  },
+  {
+    "objectID": "Python_To_R.html#对象转换",
+    "href": "Python_To_R.html#对象转换",
+    "title": "R⬌Python",
+    "section": "",
+    "text": "Type conversions\n\n\n\n\n\n\nR\nPython\n例\n\n\n\n单元素向量\n标量Scalar\n\n1、 1L、TRUE、\"foo\"\n\n\n\n未命名列表或多元素向量\nList\n\nc(1.0, 2.0, 3.0), c(1L, 2L, 3L)\n\n\n\n命名列表\nDict\n\nlist(a = 1L, b = 2.0), dict(x = x_data)\n\n\n\nMatrix/Array\nNumPy ndarray\nmatrix(c(1,2,3,4), nrow = 2, ncol = 2)\n\n\nData Frame\nPandas DataFrame\ndata.frame(x = c(1,2,3), y = c(\"a\", \"b\", \"c\"))\n\n\nFunction\nPython function\nfunction(x) x + 1\n\n\nNULL, TRUE, FALSE\nNone, True, False\n\nNULL, TRUE, ALSE",
+    "crumbs": [
+      "R⬌Python"
+    ]
+  },
+  {
+    "objectID": "Python_To_R.html#reticulate",
+    "href": "Python_To_R.html#reticulate",
+    "title": "R⬌Python",
+    "section": "reticulate::",
+    "text": "reticulate::\n\nShow the codelibrary(reticulate)\n#devtools::install_version( \"ggmap\",  version = \"3.5.2\")\n\n\"R code\"\n\n\n\nShow the code\"python code\"\n\n\nR 安装 python 模块\nreticulate：安装Python module\n\nShow the codelibrary(reticulate)\npy_config()\npy_module_available('pip')\n\n#  Anaconda 激活环境   pip install scanpy -i https://pypi.tuna.tsinghua.edu.cn/simple/  ，依赖包含 numpy pandas\npy_module_available('numpy')\npy_module_available('pandas')\npy_module_available('scanpy')\nreticulate::repl_python()\n\n\nR 调用 Python 模块\n\nShow the code# 调用os模块(module)的listdir()函数\nos &lt;- reticulate::import(\"os\")\nos$listdir(\"./\")\n\n# 调用seaborn模块的load_dataset()函数\n# 需要seaborn模块已安装\nsns &lt;- import(\"seaborn\")\ntips &lt;- sns$load_dataset(\"tips\")\nprint(head(tips))\n\n\n\nR → Python\n\nShow the codeA &lt;- 1\nB &lt;- c(1, 2, 3)\nC &lt;- c(a = 1, b = 2, c = 3)\nD &lt;- matrix(1:4, nrow = 2)\nE &lt;- data.frame(a = c(1, 2), b = c(3, 4))\nG &lt;- list(1, 2, 3)\nH &lt;- list(c(1, 2), c(3, 4))\nI &lt;- list(a = c(1, 2), b = c(3, 4))\nJ &lt;- function(a, b) {\n  return(a + b)\n  }\nK1 &lt;- NULL\nK2 &lt;- T\nK3 &lt;- F\n\n\n\nShow the code### float\nr.A\ntype(r.A)\n\n### list\nr.B\ntype(r.B)\n\nr.C\ntype(r.C)\n\n### numpy.ndarray\nr.D\ntype(r.D)\n\n### pandas.core.frame.DataFrame\nr.E\ntype(r.E)\n\n### list\nr.G\ntype(r.G)\n\nr.H\ntype(r.H)\n\n### dict\nr.I\ntype(r.I)\n\n### function\nr.J\ntype(r.J)\nr.J(2, 3)\n\n\n### NoneType\nr.K1\ntype(r.K1)\n\n\n### bool\nr.K2\ntype(r.K2)\nr.K3\ntype(r.K3)\n\n\n\nPython → R\n\nShow the codeimport pandas as pd\nm = [1, 2, 3]\nn = pd.DataFrame([[1, 2], [3, 4]], columns=[\"a\", \"b\"])\n\nA = 1\nB = [1, 2, 3]\nC = [[1, 2], [3, 4]]\nD1 = [[1], 2, 3]\nD2 = [[1, 2], 2, 3]\n\nE = (1, 2, 3)\n\nFF = ((1, 2), (3, 4))\n\nG = ((1, 2), 3, 4)\n\nH = {\"a\": [1, 2, 3],  \"b\": [2, 3, 4]}\n     \nI = {\"a\": 1,\"b\": [2, 3, 4]}\n     \ndef J(a, b):\n  return a + b\n\n\n\nShow the codepy$m\npy$n\n\n### integer\npy$A\nclass(py$A)\n\npy$B\nclass(py$B)\n\n### list\npy$C\nclass(py$C)\n\npy$D1\nclass(py$D1)\n\npy$D2\nclass(py$D2)\n\npy$E\nclass(py$E)\n\npy$FF\nclass(py$FF)\n\npy$G\nclass(py$G)\n\npy$H\nclass(py$H)\n\npy$I\nclass(py$I)\n\n### function\npy$J\nclass(py$J)\npy$J(2, 3)",
+    "crumbs": [
+      "R⬌Python"
+    ]
+  },
+  {
+    "objectID": "Python_to_R.html",
+    "href": "Python_to_R.html",
+    "title": "Python to R",
+    "section": "",
+    "text": "对象转换",
+    "crumbs": [
+      "Python to R"
+    ]
+  },
+  {
+    "objectID": "Python_to_R.html#对象转换",
+    "href": "Python_to_R.html#对象转换",
+    "title": "Python to R",
+    "section": "",
+    "text": "Type conversions\n\n\n\n\n\n\nR\nPython\n例\n\n\n\n单元素向量\n标量Scalar\n\n1、 1L、TRUE、\"foo\"\n\n\n\n未命名列表或多元素向量\nList\n\nc(1.0, 2.0, 3.0), c(1L, 2L, 3L)\n\n\n\n命名列表\nDict\n\nlist(a = 1L, b = 2.0), dict(x = x_data)\n\n\n\nMatrix/Array\nNumPy ndarray\nmatrix(c(1,2,3,4), nrow = 2, ncol = 2)\n\n\nData Frame\nPandas DataFrame\ndata.frame(x = c(1,2,3), y = c(\"a\", \"b\", \"c\"))\n\n\nFunction\nPython function\nfunction(x) x + 1\n\n\nNULL, TRUE, FALSE\nNone, True, False\n\nNULL, TRUE, ALSE",
+    "crumbs": [
+      "Python to R"
+    ]
+  },
+  {
+    "objectID": "Python_to_R.html#reticulate",
+    "href": "Python_to_R.html#reticulate",
+    "title": "Python to R",
+    "section": "reticulate::",
+    "text": "reticulate::\n\nShow the codelibrary(reticulate)\n#devtools::install_version( \"ggmap\",  version = \"3.5.2\")\n\n\"R code\"\n\n\n\nShow the code\"python code\"\n\n\nR 安装 python 模块\nreticulate：安装Python module\n\nShow the codelibrary(reticulate)\npy_config()\npy_module_available('pip')\n\n#  Anaconda 激活环境   pip install scanpy -i https://pypi.tuna.tsinghua.edu.cn/simple/  ，依赖包含 numpy pandas\npy_module_available('numpy')\npy_module_available('pandas')\npy_module_available('scanpy')\nreticulate::repl_python()\n\n\nR 调用 Python 模块\n\nShow the code# 调用os模块(module)的listdir()函数\nos &lt;- reticulate::import(\"os\")\nos$listdir(\"./\")\n\n# 调用seaborn模块的load_dataset()函数\n# 需要seaborn模块已安装\nsns &lt;- import(\"seaborn\")\ntips &lt;- sns$load_dataset(\"tips\")\nprint(head(tips))\n\n\n\nR → Python\n\nShow the codeA &lt;- 1\nB &lt;- c(1, 2, 3)\nC &lt;- c(a = 1, b = 2, c = 3)\nD &lt;- matrix(1:4, nrow = 2)\nE &lt;- data.frame(a = c(1, 2), b = c(3, 4))\nG &lt;- list(1, 2, 3)\nH &lt;- list(c(1, 2), c(3, 4))\nI &lt;- list(a = c(1, 2), b = c(3, 4))\nJ &lt;- function(a, b) {\n  return(a + b)\n  }\nK1 &lt;- NULL\nK2 &lt;- T\nK3 &lt;- F\n\n\n\nShow the code### float\nr.A\ntype(r.A)\n\n### list\nr.B\ntype(r.B)\n\nr.C\ntype(r.C)\n\n### numpy.ndarray\nr.D\ntype(r.D)\n\n### pandas.core.frame.DataFrame\nr.E\ntype(r.E)\n\n### list\nr.G\ntype(r.G)\n\nr.H\ntype(r.H)\n\n### dict\nr.I\ntype(r.I)\n\n### function\nr.J\ntype(r.J)\nr.J(2, 3)\n\n\n### NoneType\nr.K1\ntype(r.K1)\n\n\n### bool\nr.K2\ntype(r.K2)\nr.K3\ntype(r.K3)\n\n\n\nPython → R\n\nShow the codeimport pandas as pd\nm = [1, 2, 3]\nn = pd.DataFrame([[1, 2], [3, 4]], columns=[\"a\", \"b\"])\n\nA = 1\nB = [1, 2, 3]\nC = [[1, 2], [3, 4]]\nD1 = [[1], 2, 3]\nD2 = [[1, 2], 2, 3]\n\nE = (1, 2, 3)\n\nFF = ((1, 2), (3, 4))\n\nG = ((1, 2), 3, 4)\n\nH = {\"a\": [1, 2, 3],  \"b\": [2, 3, 4]}\n     \nI = {\"a\": 1,\"b\": [2, 3, 4]}\n     \ndef J(a, b):\n  return a + b\n\n\n\nShow the codepy$m\npy$n\n\n### integer\npy$A\nclass(py$A)\n\npy$B\nclass(py$B)\n\n### list\npy$C\nclass(py$C)\n\npy$D1\nclass(py$D1)\n\npy$D2\nclass(py$D2)\n\npy$E\nclass(py$E)\n\npy$FF\nclass(py$FF)\n\npy$G\nclass(py$G)\n\npy$H\nclass(py$H)\n\npy$I\nclass(py$I)\n\n### function\npy$J\nclass(py$J)\npy$J(2, 3)",
+    "crumbs": [
+      "Python to R"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Big data in R",
+    "section": "",
+    "text": "data.table, dtplyr,dbplyr\nrcpp\narrow\nspark\nploars",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>big data in R</span>"
+    ]
+  }
+]

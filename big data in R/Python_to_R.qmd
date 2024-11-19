@@ -3,7 +3,7 @@ execute:
   eval: false
 ---
 
-# R⬌Python {.unnumbered}
+# Python to R {.unnumbered}
 
 ## 对象转换
 
