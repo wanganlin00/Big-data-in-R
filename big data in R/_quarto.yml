@@ -1,0 +1,29 @@
+project:
+  type: book
+  output-dir: docs
+
+website:
+  title: "big data in R"
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - data.table.qmd
+    - arrow.qmd
+    - polars.qmd
+    - parallel_computing.qmd
+    - spark.qmd
+    - Rcpp.qmd
+    - R_Python.qmd
+
+
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
