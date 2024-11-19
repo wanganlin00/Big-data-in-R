@@ -82,21 +82,21 @@
   {
     "objectID": "parallel_computing.html",
     "href": "parallel_computing.html",
-    "title": "\n5  并行计算\n",
+    "title": "\n4  并行计算\n",
     "section": "",
-    "text": "5.1 硬件\nParallel computing\nShow the codeif(!require(benchmarkme)) install.packages(\"benchmarkme\")\n1字节（byte）= 8位（bit） 二进制数 = 1个 ASCII 字符。\nInternational System of Units (SI)\nShow the code# 随机存取存储器 Random access memory,RAM\nget_ram()\n#&gt; 33.9 GB\n\n\n# CPU\nget_cpu()\n#&gt; $vendor_id\n#&gt; [1] \"GenuineIntel\"\n#&gt; \n#&gt; $model_name\n#&gt; [1] \"Intel(R) Core(TM) Ultra 5 125H\"\n#&gt; \n#&gt; $no_of_cores\n#&gt; [1] 18\nstandard hard disk drives (HDDs)\nSolid state drives (SSDs)",
+    "text": "4.1 硬件\nParallel computing\nShow the codeif(!require(benchmarkme)) install.packages(\"benchmarkme\")\n1字节（byte）= 8位（bit） 二进制数 = 1个 ASCII 字符。\nInternational System of Units (SI)\nShow the code# 随机存取存储器 Random access memory,RAM\nget_ram()\n#&gt; 33.9 GB\n\n\n# CPU\nget_cpu()\n#&gt; $vendor_id\n#&gt; [1] \"GenuineIntel\"\n#&gt; \n#&gt; $model_name\n#&gt; [1] \"Intel(R) Core(TM) Ultra 5 125H\"\n#&gt; \n#&gt; $no_of_cores\n#&gt; [1] 18\nstandard hard disk drives (HDDs)\nSolid state drives (SSDs)",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>并行计算</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>并行计算</span>"
     ]
   },
   {
     "objectID": "parallel_computing.html#并行计算",
     "href": "parallel_computing.html#并行计算",
-    "title": "\n5  并行计算\n",
-    "section": "\n5.2 并行计算",
-    "text": "5.2 并行计算\n\n\n\n\nCluster\nMaster\nWorker\nJob -&gt; (Spilt) -&gt; task 1,…,n, -&gt; (feed) -&gt; R worker\nhttps://www.futureverse.org/\n\n5.2.1 furrr 包\n\n5.2.2 future.apply 包\n\n5.2.3 BiocParallel 包",
+    "title": "\n4  并行计算\n",
+    "section": "\n4.2 并行计算",
+    "text": "4.2 并行计算\n\n\n\n\nCluster\nMaster\nWorker\nJob -&gt; (Spilt) -&gt; task 1,…,n, -&gt; (feed) -&gt; R worker\nhttps://www.futureverse.org/\n\n4.2.1 furrr 包\n\n4.2.2 future.apply 包\n\n4.2.3 BiocParallel 包",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>并行计算</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>并行计算</span>"
     ]
   },
   {
