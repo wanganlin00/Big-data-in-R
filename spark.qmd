@@ -131,7 +131,7 @@ file.remove("data/spark/output")
 spark_web(sc)
 ```
 
-![](images/Sparklyr UI.png)
+![](images/Sparklyr%20UI.png)
 
 ## 断开连接
 

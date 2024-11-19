@@ -44,6 +44,6 @@ DT[i, j, by]
 ## SQL:  where | order by   select | update  group by
 ```
 
-![](images/data.table_cheatsheet.jpg){fig-align="center"}
+![](images/data.table_cheatsheet.jpg){fig-align="center" width="80%"}
 
 <https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html>

@@ -22,21 +22,21 @@
   {
     "objectID": "data.table.html",
     "href": "data.table.html",
-    "title": "\n2  data.table\n",
+    "title": "\n1  data.table\n",
     "section": "",
-    "text": "2.1 dtplyr 语法\nDTPLYR 使用 DPLYR 的语法s实现 data.table 的速度；编写 DPLYR（和 TidyR）代码，DTPLYR 将其转换为等效的 Data.Table。\nShow the codemtcars2 &lt;- lazy_dt(mtcars)\nShow the codedtplyr &lt;- mtcars2 %&gt;% \n  filter(wt &lt; 5) %&gt;% \n  mutate(l100k = 235.21 / mpg) %&gt;% # liters / 100 km\n  group_by(cyl) %&gt;% \n  summarise(l100k = mean(l100k))\ndtplyr\n#&gt; Source: local data table [3 x 2]\n#&gt; Call:   `_DT1`[wt &lt; 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#&gt;     keyby = .(cyl)]\n#&gt; \n#&gt;     cyl l100k\n#&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1     4  9.05\n#&gt; 2     6 12.0 \n#&gt; 3     8 14.9 \n#&gt; \n#&gt; # Use as.data.table()/as.data.frame()/as_tibble() to access results\n\ndtplyr %&gt;% show_query()\n#&gt; `_DT1`[wt &lt; 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#&gt;     keyby = .(cyl)]\n\ndtplyr %&gt;% as_tibble()\n#&gt; # A tibble: 3 × 2\n#&gt;     cyl l100k\n#&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1     4  9.05\n#&gt; 2     6 12.0 \n#&gt; 3     8 14.9\nShow the codedt &lt;- data.table::as.data.table(mtcars)\ndt[wt&lt;5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), keyby = .(cyl)]\n#&gt; Key: &lt;cyl&gt;\n#&gt;      cyl     l100k\n#&gt;    &lt;num&gt;     &lt;num&gt;\n#&gt; 1:     4  9.048898\n#&gt; 2:     6 11.970180\n#&gt; 3:     8 14.871885",
+    "text": "1.1 dtplyr 语法\nDTPLYR 使用 DPLYR 的语法s实现 data.table 的速度；编写 DPLYR（和 TidyR）代码，DTPLYR 将其转换为等效的 Data.Table。\nShow the codemtcars2 &lt;- lazy_dt(mtcars)\nShow the codedtplyr &lt;- mtcars2 %&gt;% \n  filter(wt &lt; 5) %&gt;% \n  mutate(l100k = 235.21 / mpg) %&gt;% # liters / 100 km\n  group_by(cyl) %&gt;% \n  summarise(l100k = mean(l100k))\ndtplyr\n#&gt; Source: local data table [3 x 2]\n#&gt; Call:   `_DT1`[wt &lt; 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#&gt;     keyby = .(cyl)]\n#&gt; \n#&gt;     cyl l100k\n#&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1     4  9.05\n#&gt; 2     6 12.0 \n#&gt; 3     8 14.9 \n#&gt; \n#&gt; # Use as.data.table()/as.data.frame()/as_tibble() to access results\n\ndtplyr %&gt;% show_query()\n#&gt; `_DT1`[wt &lt; 5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), \n#&gt;     keyby = .(cyl)]\n\ndtplyr %&gt;% as_tibble()\n#&gt; # A tibble: 3 × 2\n#&gt;     cyl l100k\n#&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1     4  9.05\n#&gt; 2     6 12.0 \n#&gt; 3     8 14.9\nShow the codedt &lt;- data.table::as.data.table(mtcars)\ndt[wt&lt;5][, `:=`(l100k = 235.21/mpg)][, .(l100k = mean(l100k)), keyby = .(cyl)]\n#&gt; Key: &lt;cyl&gt;\n#&gt;      cyl     l100k\n#&gt;    &lt;num&gt;     &lt;num&gt;\n#&gt; 1:     4  9.048898\n#&gt; 2:     6 11.970180\n#&gt; 3:     8 14.871885",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>`data.table`</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>`data.table`</span>"
     ]
   },
   {
     "objectID": "data.table.html#data.table-语法",
     "href": "data.table.html#data.table-语法",
-    "title": "\n2  data.table\n",
-    "section": "\n2.2 data.table 语法",
-    "text": "2.2 data.table 语法\nDT[i, j, by]\n\n##   R:                 i                 j        by\n## SQL:  where | order by   select | update  group by\n\n\n\n\nhttps://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html",
+    "title": "\n1  data.table\n",
+    "section": "\n1.2 data.table 语法",
+    "text": "1.2 data.table 语法\nDT[i, j, by]\n\n##   R:                 i                 j        by\n## SQL:  where | order by   select | update  group by\n\n\n\n\nhttps://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>`data.table`</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>`data.table`</span>"
     ]
   },
   {
@@ -102,61 +102,61 @@
   {
     "objectID": "spark.html",
     "href": "spark.html",
-    "title": "\n6  Spark\n",
+    "title": "\n5  Spark\n",
     "section": "",
-    "text": "6.1 安装\nhttps://spark.posit.co/\nApache Spark 是用于大规模数据处理的统一分析引擎。\nSpark 提供了一组超出 MapReduce 的更丰富的动词，以方便优化在多台计算机中运行的代码。Spark 还将数据加载到内存中，使操作速度比 Hadoop 的磁盘存储快得多。",
+    "text": "5.1 安装\nhttps://spark.posit.co/\nApache Spark 是用于大规模数据处理的统一分析引擎。\nSpark 提供了一组超出 MapReduce 的更丰富的动词，以方便优化在多台计算机中运行的代码。Spark 还将数据加载到内存中，使操作速度比 Hadoop 的磁盘存储快得多。",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
     "objectID": "spark.html#安装",
     "href": "spark.html#安装",
-    "title": "\n6  Spark\n",
+    "title": "\n5  Spark\n",
     "section": "",
-    "text": "6.1.1 java 8\nhttps://java.com/download\n\nShow the codesystem(command = \"E:/java/bin/java.exe -version\",intern = T) %&gt;% cat(.,sep = \"\\n\")\n\n\n# 在 R 中临时设置 JAVA_HOME 环境变量\n# Sys.setenv(JAVA_HOME = \"E:/java\")\n\n\n\n6.1.2 sparklyr\n\nShow the code#install.packages(\"sparklyr\")\npackageVersion(\"sparklyr\")\n\n\n\n6.1.3 spark\n\nShow the codelibrary(sparklyr)\n# C:\\\\Users\\\\DELL\\\\AppData\\\\Local/spark\noptions(spark.install.dir = \"E:/spark/\")\nspark_install_dir()\n# spark_available_versions()\n\n#spark_install(version = \"3.3\")\nspark_installed_versions()\n\n\n# spark_uninstall(version = \"1.6.3\", hadoop = \"2.6\")",
+    "text": "5.1.1 java 8\nhttps://java.com/download\n\nShow the codesystem(command = \"E:/java/bin/java.exe -version\",intern = T) %&gt;% cat(.,sep = \"\\n\")\n\n\n# 在 R 中临时设置 JAVA_HOME 环境变量\n# Sys.setenv(JAVA_HOME = \"E:/java\")\n\n\n\n5.1.2 sparklyr\n\nShow the code#install.packages(\"sparklyr\")\npackageVersion(\"sparklyr\")\n\n\n\n5.1.3 spark\n\nShow the codelibrary(sparklyr)\n# C:\\\\Users\\\\DELL\\\\AppData\\\\Local/spark\noptions(spark.install.dir = \"E:/spark/\")\nspark_install_dir()\n# spark_available_versions()\n\n#spark_install(version = \"3.3\")\nspark_installed_versions()\n\n\n# spark_uninstall(version = \"1.6.3\", hadoop = \"2.6\")",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
     "objectID": "spark.html#连接",
     "href": "spark.html#连接",
-    "title": "\n6  Spark\n",
-    "section": "\n6.2 连接",
-    "text": "6.2 连接\n\nShow the codelibrary(sparklyr)\nsc &lt;- spark_connect(master = \"local\")",
+    "title": "\n5  Spark\n",
+    "section": "\n5.2 连接",
+    "text": "5.2 连接\n\nShow the codelibrary(sparklyr)\nsc &lt;- spark_connect(master = \"local\")",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
     "objectID": "spark.html#使用",
     "href": "spark.html#使用",
-    "title": "\n6  Spark\n",
-    "section": "\n6.3 使用",
-    "text": "6.3 使用\n\nShow the codecars &lt;- copy_to(sc, mtcars)\n\ncars\n\n\n\nShow the codelibrary(dplyr)\nselect(cars, hp, mpg) %&gt;%\n  sample_n(100) %&gt;%\n  collect() %&gt;%\n  plot()\n\n\n\nShow the codemodel &lt;- ml_linear_regression(cars, mpg ~ hp)\nmodel\n\nmodel %&gt;%\n  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %&gt;%\n  transmute(hp = hp, mpg = prediction) %&gt;%\n  full_join(select(cars, hp, mpg)) %&gt;%\n  collect() %&gt;%\n  plot()\n\n\n\nShow the codespark_write_csv(cars, \"data/spark/cars.csv\")\n\ncars &lt;- spark_read_csv(sc, \"data/spark/cars.csv\")\n\n\n\n6.3.1 分布式\n\nShow the codecars %&gt;% spark_apply(~round(.x))\n\n\n\n6.3.2 流\n\nShow the codedir.create(\"data/spark/input\")\ndir.create(\"data/spark/output\")\nwrite.csv(mtcars, \"data/spark/input/cars_1.csv\", row.names = F)\n\n\nstream &lt;-stream_read_csv(sc, \"data/spark/input/\") %&gt;%\n    select(mpg, cyl, disp) %&gt;% \n    stream_write_csv(\"data/spark/output/\")\n\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nwrite.csv(mtcars, \"data/spark/input/cars_2.csv\", row.names = F)\n\n# 几秒钟后\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nstream_stop(stream)\n\nfile.remove(\"data/spark/input\")\nfile.remove(\"data/spark/output\")",
+    "title": "\n5  Spark\n",
+    "section": "\n5.3 使用",
+    "text": "5.3 使用\n\nShow the codecars &lt;- copy_to(sc, mtcars)\n\ncars\n\n\n\nShow the codelibrary(dplyr)\nselect(cars, hp, mpg) %&gt;%\n  sample_n(100) %&gt;%\n  collect() %&gt;%\n  plot()\n\n\n\nShow the codemodel &lt;- ml_linear_regression(cars, mpg ~ hp)\nmodel\n\nmodel %&gt;%\n  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %&gt;%\n  transmute(hp = hp, mpg = prediction) %&gt;%\n  full_join(select(cars, hp, mpg)) %&gt;%\n  collect() %&gt;%\n  plot()\n\n\n\nShow the codespark_write_csv(cars, \"data/spark/cars.csv\")\n\ncars &lt;- spark_read_csv(sc, \"data/spark/cars.csv\")\n\n\n\n5.3.1 分布式\n\nShow the codecars %&gt;% spark_apply(~round(.x))\n\n\n\n5.3.2 流\n\nShow the codedir.create(\"data/spark/input\")\ndir.create(\"data/spark/output\")\nwrite.csv(mtcars, \"data/spark/input/cars_1.csv\", row.names = F)\n\n\nstream &lt;-stream_read_csv(sc, \"data/spark/input/\") %&gt;%\n    select(mpg, cyl, disp) %&gt;% \n    stream_write_csv(\"data/spark/output/\")\n\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nwrite.csv(mtcars, \"data/spark/input/cars_2.csv\", row.names = F)\n\n# 几秒钟后\ndir(\"data/spark/output\", pattern = \".csv\")\n\n\nstream_stop(stream)\n\nfile.remove(\"data/spark/input\")\nfile.remove(\"data/spark/output\")",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
     "objectID": "spark.html#web-界面",
     "href": "spark.html#web-界面",
-    "title": "\n6  Spark\n",
-    "section": "\n6.4 Web 界面",
-    "text": "6.4 Web 界面\n\nShow the codespark_web(sc)",
+    "title": "\n5  Spark\n",
+    "section": "\n5.4 Web 界面",
+    "text": "5.4 Web 界面\n\nShow the codespark_web(sc)",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
     "objectID": "spark.html#断开连接",
     "href": "spark.html#断开连接",
-    "title": "\n6  Spark\n",
-    "section": "\n6.5 断开连接",
-    "text": "6.5 断开连接\n\nShow the codespark_disconnect(sc)\nspark_disconnect_all()",
+    "title": "\n5  Spark\n",
+    "section": "\n5.5 断开连接",
+    "text": "5.5 断开连接\n\nShow the codespark_disconnect(sc)\nspark_disconnect_all()",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Spark</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spark</span>"
     ]
   },
   {
