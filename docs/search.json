@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "大数据",
     "section": "",
-    "text": "0.1 推荐",
+    "text": "推荐\n\ndata.table, dtplyr,dbplyr\nrcpp\narrow\nspark\nploars",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>推荐</span>"
+      "推荐"
     ]
   },
   {
