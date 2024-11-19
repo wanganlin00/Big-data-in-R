@@ -11,7 +11,7 @@ Apache Spark 是用于大规模数据处理的统一分析引擎。
 
 Spark 提供了一组超出 MapReduce 的更丰富的动词，以方便优化在多台计算机中运行的代码。Spark 还将数据加载到内存中，使操作速度比 Hadoop 的磁盘存储快得多。
 
-![](images/clipboard-2740544019.png){fig-align="center" width="60%"}
+![](images/MapReduce.png){fig-align="center"}
 
 ## 安装
 
@@ -131,7 +131,7 @@ file.remove("data/spark/output")
 spark_web(sc)
 ```
 
-![](images/clipboard-2463586693.png)
+![](images/Sparklyr UI.png)
 
 ## 断开连接
 
