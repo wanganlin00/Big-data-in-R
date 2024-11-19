@@ -9,11 +9,13 @@ book:
     - index.qmd
     - data.table.qmd
     - arrow.qmd
-    - polars.qmd
+    - Rcpp.qmd
     - parallel_computing.qmd
     - spark.qmd
-    - Rcpp.qmd
     - Python_to_R.qmd
+    - polars.qmd
+
+
 
 
 execute:
