@@ -2,7 +2,7 @@ project:
   type: book
   output-dir: docs
 
-website:
+book: 
   title: "big data in R"
   reader-mode: true
   chapters:
