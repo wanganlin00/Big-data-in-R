@@ -3,21 +3,36 @@ project:
   output-dir: docs
 
 book: 
-  title: "big data in R"
+  title: "大数据"
   reader-mode: true
   chapters:
     - index.qmd
-    - intro.qmd
     - data.table.qmd
     - arrow.qmd
     - polars.qmd
     - parallel_computing.qmd
     - spark.qmd
     - Rcpp.qmd
-    - R_Python.qmd
+    - Python_to_R.qmd
 
 
+execute:
+  message: false 
+  warning: false 
 
+toc: true
+toc-depth: 4
+number-sections: true
+number-depth: 4
+
+code-fold: show
+code-tools: true
+code-link: true
+code-summary: "Show the code"
+knitr:
+  opts_chunk: 
+    comment: "#>" 
+    collapse: TRUE
 
 format:
   html:
