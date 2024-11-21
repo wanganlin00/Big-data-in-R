@@ -1,0 +1,9 @@
+
+# vroom
+
+```{r}
+library(vroom)
+
+vroom::vroom(file = "data/Advertising.csv")
+```
+
