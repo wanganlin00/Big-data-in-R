@@ -8,6 +8,7 @@ book:
   chapters:
     - index.qmd
     - data.table.qmd
+    - vroom.qmd
     - arrow.qmd
     - Rcpp.qmd
     - parallel_computing.qmd
