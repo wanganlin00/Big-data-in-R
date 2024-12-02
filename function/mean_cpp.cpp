@@ -18,6 +18,5 @@ double mean_cpp(NumericVector x) {     //  NumericVector  IntegerVector Characte
 // R测试代码
 
 /*** R
-x=c(1,2,3,4,5)
-mean_cpp(x)
+mean_cpp(1:5)
 */

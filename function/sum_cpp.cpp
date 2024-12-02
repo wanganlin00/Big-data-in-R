@@ -28,5 +28,5 @@ double sum_cpp(NumericVector x) {
 //
 
 /*** R
-sum_cpp(c(1,2,3))
+sum_cpp(1:5)
 */
