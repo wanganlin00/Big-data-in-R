@@ -8,9 +8,11 @@
 
 <https://www.runoob.com/cplusplus/cpp-tutorial.html>
 
-## 数据结构
+## 返回单个值，参数的数据结构
 
 ### 向量类
+
+`const`
 
 `NumericVector` `IntegerVector` `CharacterVector` `LogicalVector`
 
@@ -27,11 +29,11 @@ mean_cpp(mpg$displ)
 
 `NumericMatrix` `IntegerMatrix` `CharacterMatrix` `LogicalMatrix`
 
-### 数据框类
+### 数据框
 
 DataFrame
 
-### 列表类
+### 列表
 
 List
 
@@ -45,15 +47,15 @@ mpe(mod)
 ### 函数类
 
 ```{r}
-cppFunction("RObject callWithOne(Function f) {
+cppFunction("RObject plusOne(Function f) {
   return f(1);
 }")
 
-callWithOne(function(x) x + 1)
-callWithOne(paste)
+plusOne(function(x) x + 1)
+plusOne(paste)
 ```
 
-### 属性
+## 属性
 
 ```{r}
 cppFunction('NumericVector attribs() {
